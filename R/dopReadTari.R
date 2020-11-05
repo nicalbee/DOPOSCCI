@@ -2,7 +2,7 @@
 #'
 #' @param file_name character File name or path/file name to fTCD file
 #'
-#' @return df dataframe Data frame on imported data
+#' @return data.frame Data frame on imported data
 #' @export
 #'
 #' @examples
@@ -64,7 +64,8 @@ dopReadTari <- function(file_name){
     # function drops them from the table !! No it doesn't!! They become another row - so need to remove them
     # make a copy and add them after as their own column
     tmp.events <- grep('\t#\\*',tmp.data) # row numbers
-    tmp.data2cols <- gsub('\t#\\*[a-z]?','',tmp.data) # [a-z] gets the letters on the end
+    tmp.data2cols <- gsub('\t#\\*[a-z]?','',tmp.data) # [a-z] gets the letters on the end but it's optional...
+    tmp.data2cols <- gsub('[A-z]','',tmp.data2cols) # upper or lower case!
     # would be ideal to keep this information...
     tmp.event_data <- sub('.*\t\\#','',tmp.data[tmp.events])
     # pop the data into a table

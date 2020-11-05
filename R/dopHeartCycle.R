@@ -7,19 +7,21 @@
 #' References
 #' Deppe, M., Knecht, S., Henningsen, H., & Ringelstein, E. B. (1997). AVERAGE: A Windows® program for automated analysis of event related cerebral blood flow. Journal of Neuroscience Methods, 75(2), 147–154. https://doi.org/10.1016/S0165-0270(97)00067-8
 #'
-#' @param dop list
-#' @param heart_cycle_window numeric
-#' @param channel_name character
+#' @param df data.frame Data to be adjusted
+#' @param heart_cycle_window numeric Value of window to search for peaks in: seconds
+#' @param channel_name character Name/s of data channels in the data frame
+#' @param sample_Hertz numeric Sampling frequency of the recording in Hertz (i.e., 100 times per second)
 #'
 #' @return dop list
 #' @export
 #'
 #' @examples
-dopHeartCycle <- function(dop, heart_cycle_window = .26, channel_name = 'velocity'){
+dopHeartCycle <- function(df, heart_cycle_window = .26, channel_name = 'velocity',
+                          sample_Hertz = 100){
   
-  tmp.data <- as.numeric(dop$data$use[,channel_name])
+  tmp.data <- as.numeric(df[,channel_name])
   
-  tmp.range <- round(heart_cycle_window/(1/dop$set$sample_Hertz))
+  tmp.range <- round(heart_cycle_window/(1/sample_Hertz))
   
   # update: look for peaks by range
   tmp.count <- 0
@@ -79,6 +81,6 @@ dopHeartCycle <- function(dop, heart_cycle_window = .26, channel_name = 'velocit
   
   # ----------------------------------------------------------------------------
   # output
-  dop$data$use$velocity <- out.data # replace this in current case
-  dop
+  df[,channel_name] <- out.data # replace this in current case
+  df
 }

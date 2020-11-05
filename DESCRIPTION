@@ -1,16 +1,17 @@
 Package: DOPOSCCI
-Title: What the Package Does (One Line, Title Case)
+Title: Functional Transcranial Doppler Ultrasound (fTCD) Data Handling Toolbox
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Nic",
+           family = "Badcock",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
-License: `use_mit_license()`, `use_gpl3_license()` or friends to
-    pick a license
+           email = "nicholas.badcock@uwa.edu.au",
+           comment = c(ORCID = "0000-0001-6862-4694"))
+Description: Toolbox for working with fTCD data: handling, processing, and visualisation. Availabe under a GPL-3 license.
+License: GPL-3 + file LICENSE 
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.1.1
+Suggests: 
+    testthat
